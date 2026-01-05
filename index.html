@@ -14,6 +14,11 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 </head>
 
 <body>
@@ -24,6 +29,9 @@
         <!-- Welcome Screen -->
         <section class="screen active" id="welcomeScreen">
             <div class="card welcome-card">
+                <!-- Auth Button -->
+                <div id="authButton" style="position: absolute; top: 20px; right: 20px;"></div>
+
                 <div class="heart-icon">💖</div>
                 <h1>Jodi Porutham</h1>
                 <p class="tagline">Discover Love & Compatibility</p>
@@ -608,6 +616,8 @@
         <p>Made with 💖 for finding love & understanding</p>
     </footer>
 
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
     <script src="app.js"></script>
 </body>
 

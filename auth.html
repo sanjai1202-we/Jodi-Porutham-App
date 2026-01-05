@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Jodi Porutham</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-card {
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 12px;
+            background: rgba(15, 52, 96, 0.3);
+            border: 1px solid rgba(255, 207, 75, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .auth-tab.active {
+            background: rgba(255, 207, 75, 0.15);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .error-message {
+            background: rgba(255, 75, 43, 0.1);
+            border: 1px solid rgba(255, 75, 43, 0.3);
+            padding: 12px;
+            border-radius: 10px;
+            color: #ff4b2b;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-message {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            padding: 12px;
+            border-radius: 10px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .divider span {
+            background: rgba(22, 33, 62, 0.95);
+            padding: 0 15px;
+            position: relative;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 14px;
+            background: white;
+            color: #333;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition-smooth);
+        }
+
+        .google-btn:hover {
+            background: #f5f5f5;
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="card auth-card">
+            <div class="heart-icon">💖</div>
+            <h1 style="text-align: center; font-size: 2rem;">Jodi Porutham</h1>
+            <p class="tagline" style="text-align: center;">Join to save your results</p>
+
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+
+            <!-- Auth Tabs -->
+            <div class="auth-tabs">
+                <div class="auth-tab active" onclick="switchTab('login')">Login</div>
+                <div class="auth-tab" onclick="switchTab('signup')">Sign Up</div>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form active" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%;">
+                    <span>Login</span>
+                </button>
+
+                <div class="divider"><span>OR</span></div>
+
+                <button type="button" class="google-btn" onclick="handleGoogleSignIn()">
+                    <svg width="20" height="20" viewBox="0 0 20 20">
+                        <path fill="#4285F4"
+                            d="M19.6 10.23c0-.82-.1-1.42-.25-2.05H10v3.72h5.5c-.15.96-.74 2.31-2.04 3.22v2.45h3.16c1.89-1.73 2.98-4.3 2.98-7.34z" />
+                        <path fill="#34A853"
+                            d="M13.46 15.13c-.83.59-1.96 1-3.46 1-2.64 0-4.88-1.74-5.68-4.15H1.07v2.52C2.72 17.75 6.09 20 10 20c2.7 0 4.96-.89 6.62-2.42l-3.16-2.45z" />
+                        <path fill="#FBBC05"
+                            d="M3.99 10c0-.69.12-1.35.32-1.97V5.51H1.07A9.973 9.973 0 000 10c0 1.61.39 3.14 1.07 4.49l3.24-2.52c-.2-.62-.32-1.28-.32-1.97z" />
+                        <path fill="#EA4335"
+                            d="M10 3.88c1.88 0 3.13.81 3.85 1.48l2.84-2.76C14.96.99 12.7 0 10 0 6.09 0 2.72 2.25 1.07 5.51l3.24 2.52C5.12 5.62 7.36 3.88 10 3.88z" />
+                    </svg>
+                    Continue with Google
+                </button>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signupForm" class="auth-form" onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="signupName">Your Name</label>
+                    <input type="text" id="signupName" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupEmail">Email Address</label>
+                    <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password (min 6 characters)"
+                        required minlength="6">
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%;">
+                    <span>Create Account</span>
+                </button>
+
+                <div class="divider"><span>OR</span></div>
+
+                <button type="button" class="google-btn" onclick="handleGoogleSignIn()">
+                    <svg width="20" height="20" viewBox="0 0 20 20">
+                        <path fill="#4285F4"
+                            d="M19.6 10.23c0-.82-.1-1.42-.25-2.05H10v3.72h5.5c-.15.96-.74 2.31-2.04 3.22v2.45h3.16c1.89-1.73 2.98-4.3 2.98-7.34z" />
+                        <path fill="#34A853"
+                            d="M13.46 15.13c-.83.59-1.96 1-3.46 1-2.64 0-4.88-1.74-5.68-4.15H1.07v2.52C2.72 17.75 6.09 20 10 20c2.7 0 4.96-.89 6.62-2.42l-3.16-2.45z" />
+                        <path fill="#FBBC05"
+                            d="M3.99 10c0-.69.12-1.35.32-1.97V5.51H1.07A9.973 9.973 0 000 10c0 1.61.39 3.14 1.07 4.49l3.24-2.52c-.2-.62-.32-1.28-.32-1.97z" />
+                        <path fill="#EA4335"
+                            d="M10 3.88c1.88 0 3.13.81 3.85 1.48l2.84-2.76C14.96.99 12.7 0 10 0 6.09 0 2.72 2.25 1.07 5.51l3.24 2.52C5.12 5.62 7.36 3.88 10 3.88z" />
+                    </svg>
+                    Sign up with Google
+                </button>
+            </form>
+
+            <div class="back-link">
+                <a href="index.html">← Back to Jodi Porutham</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
+
+    <script>
+        // Switch between login and signup tabs
+        function switchTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const tabs = document.querySelectorAll('.auth-tab');
+
+            tabs.forEach(t => t.classList.remove('active'));
+
+            if (tab === 'login') {
+                loginForm.classList.add('active');
+                signupForm.classList.remove('active');
+                tabs[0].classList.add('active');
+            } else {
+                signupForm.classList.add('active');
+                loginForm.classList.remove('active');
+                tabs[1].classList.add('active');
+            }
+
+            hideMessages();
+        }
+
+        // Handle Login
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                showLoading();
+                await firebase.auth().signInWithEmailAndPassword(email, password);
+                showSuccess('Login successful! Redirecting...');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } catch (error) {
+                hideLoading();
+                showError(getErrorMessage(error.code));
+            }
+        }
+
+        // Handle Signup
+        async function handleSignup(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            try {
+                showLoading();
+                const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+
+                // Update profile with name
+                await userCredential.user.updateProfile({
+                    displayName: name
+                });
+
+                showSuccess('Account created! Redirecting...');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } catch (error) {
+                hideLoading();
+                showError(getErrorMessage(error.code));
+            }
+        }
+
+        // Handle Google Sign-In
+        async function handleGoogleSignIn() {
+            try {
+                showLoading();
+                const provider = new firebase.auth.GoogleAuthProvider();
+                await firebase.auth().signInWithPopup(provider);
+                showSuccess('Login successful! Redirecting...');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } catch (error) {
+                hideLoading();
+                showError(getErrorMessage(error.code));
+            }
+        }
+
+        // Utility Functions
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+        }
+
+        function hideMessages() {
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+
+        function showLoading() {
+            document.querySelectorAll('button[type="submit"]').forEach(btn => {
+                btn.disabled = true;
+                btn.innerHTML = '<span>Loading...</span>';
+            });
+        }
+
+        function hideLoading() {
+            document.querySelectorAll('button[type="submit"]').forEach(btn => {
+                btn.disabled = false;
+            });
+            document.querySelector('#loginForm button').innerHTML = '<span>Login</span>';
+            document.querySelector('#signupForm button').innerHTML = '<span>Create Account</span>';
+        }
+
+        function getErrorMessage(code) {
+            const messages = {
+                'auth/email-already-in-use': 'This email is already registered. Please login.',
+                'auth/invalid-email': 'Invalid email address.',
+                'auth/weak-password': 'Password should be at least 6 characters.',
+                'auth/user-not-found': 'No account found with this email.',
+                'auth/wrong-password': 'Incorrect password. Please try again.',
+                'auth/too-many-requests': 'Too many attempts. Please try again later.',
+                'auth/popup-closed-by-user': 'Sign-in cancelled.',
+            };
+            return messages[code] || 'An error occurred. Please try again.';
+        }
+
+        // Redirect if already logged in
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+
+</html>

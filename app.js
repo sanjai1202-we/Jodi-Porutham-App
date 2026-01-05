@@ -619,6 +619,21 @@ function calculateLove() {
         updateLoveMeter(finalPercent);
         updateConnectionBars(finalPercent);
     }, 300);
+
+    // 6. Save to Firebase (if user is logged in)
+    if (typeof saveTestResult === 'function') {
+        saveTestResult({
+            type: 'couple',
+            partnerName: `${maleName} & ${femaleName}`,
+            score: finalPercent,
+            dialogue: document.querySelector('#coupleFunnyRemark .funny-comment')?.textContent || '',
+            numerology: {
+                male: maleNum,
+                female: femaleNum,
+                combined: combinedNum
+            }
+        }).catch(err => console.log('Save skipped:', err));
+    }
 }
 
 // Helper: Map name to numerology number (Pythagorean system)
