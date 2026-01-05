@@ -9,13 +9,12 @@
 
 // REPLACE THIS WITH YOUR ACTUAL FIREBASE CONFIG
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY_HERE",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID",
-    measurementId: "YOUR_MEASUREMENT_ID"
+    apiKey: "AIzaSyB3InYIcdpSkJM3hiqzZ70k_8UJfXDVdTY",
+    authDomain: "jodi-porutham.firebaseapp.com",
+    projectId: "jodi-porutham",
+    storageBucket: "jodi-porutham.firebasestorage.app",
+    messagingSenderId: "475205201246",
+    appId: "1:475205201246:web:fdeefd6c71e95e3311b3cf"
 };
 
 // Initialize Firebase
