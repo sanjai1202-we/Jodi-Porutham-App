@@ -634,6 +634,21 @@ function calculateLove() {
             }
         }).catch(err => console.log('Save skipped:', err));
     }
+
+    // 7. Celebrate high scores with confetti
+    if (typeof celebrateHighScore === 'function') {
+        setTimeout(() => celebrateHighScore(finalPercent), 500);
+    }
+
+    // 8. Track achievement
+    if (typeof trackTestCompletion === 'function') {
+        trackTestCompletion('couple');
+    }
+
+    // 9. Check for match master achievement
+    if (finalPercent >= 90 && typeof unlockAchievement === 'function') {
+        unlockAchievement('match_master');
+    }
 }
 
 // Helper: Map name to numerology number (Pythagorean system)
