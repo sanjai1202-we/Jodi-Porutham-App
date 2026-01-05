@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Discover your perfect partner match based on personality, emotions, and lifestyle. Find love compatibility with our AI-powered relationship counselor.">
+    <meta name="keywords" content="personality matching, love compatibility, relationship counselor, partner finder">
+    <title>💖 Jodi Porutham - Find Your Perfect Match</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <div class="container">
+        <!-- Welcome Screen -->
+        <section class="screen active" id="welcomeScreen">
+            <div class="card welcome-card">
+                <div class="heart-icon">💖</div>
+                <h1>Jodi Porutham</h1>
+                <p class="tagline">Discover Love & Compatibility</p>
+                <p class="description">
+                    Welcome to your personal love counselor! 🌸<br>
+                    Choose how you'd like to explore love today...
+                </p>
+
+                <div class="mode-selection">
+                    <button class="mode-card" onclick="startJourney()">
+                        <span class="mode-icon">👤</span>
+                        <span class="mode-title">Find My Match</span>
+                        <span class="mode-desc">Discover your ideal partner type</span>
+                    </button>
+
+                    <button class="mode-card" onclick="startCoupleCalculator()">
+                        <span class="mode-icon">💑</span>
+                        <span class="mode-title">Couple Calculator</span>
+                        <span class="mode-desc">Check love compatibility with numerology</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Basic Info Screen -->
+        <section class="screen" id="basicInfoScreen">
+            <div class="card">
+                <div class="progress-bar">
+                    <div class="progress" style="width: 20%"></div>
+                </div>
+                <h2>Let's Get to Know You 🌷</h2>
+                <p class="step-desc">First, tell us a little about yourself...</p>
+
+                <div class="form-group">
+                    <label for="userName">What's your beautiful name? 💫</label>
+                    <input type="text" id="userName" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Your Gender 🌸</label>
+                    <div class="radio-group">
+                        <label class="radio-card">
+                            <input type="radio" name="gender" value="male">
+                            <span class="radio-label">👨 Male <small>(சிங்கம் களம் இறங்குது 🦁)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="gender" value="female">
+                            <span class="radio-label">👩 Female <small>(அழகிய தேவதை 🌸)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="gender" value="other">
+                            <span class="radio-label">🌈 Other <small>(எல்லாம் கலந்த கலவை 🌈)</small></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="userAge">Your Age 🎂</label>
+                    <input type="number" id="userAge" placeholder="Enter your age" min="15" max="100" required>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn-secondary" onclick="goBack('welcomeScreen')">← Back</button>
+                    <button class="btn-primary" onclick="goToPersonality()">Continue 💖</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personality Screen -->
+        <section class="screen" id="personalityScreen">
+            <div class="card">
+                <div class="progress-bar">
+                    <div class="progress" style="width: 40%"></div>
+                </div>
+                <h2>🧩 Personality & Habits</h2>
+                <p class="step-desc">Let's understand your wonderful personality...</p>
+
+                <div class="form-group">
+                    <label>How would you describe yourself?</label>
+                    <div class="radio-group vertical">
+                        <label class="radio-card">
+                            <input type="radio" name="personality" value="calm">
+                            <span class="radio-label">😌 Calm & Peaceful <small>(அமைதி... அமைதியோ அமைதி
+                                    😌)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="personality" value="emotional">
+                            <span class="radio-label">💝 Emotional & Expressive <small>(பாசமலர் ஷிவாஜி ரேஞ்சுக்கு!
+                                    💝)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="personality" value="confident">
+                            <span class="radio-label">💪 Confident & Bold <small>(மாஸ் காட்டும் மல்லுவேட்டி மைனர்
+                                    💪)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="personality" value="sensitive">
+                            <span class="radio-label">🌸 Sensitive & Caring <small>(நேக்கு கண்ணு வேர்க்குதுப்பா...
+                                    🌸)</small></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Are you more...</label>
+                    <div class="radio-group">
+                        <label class="radio-card">
+                            <input type="radio" name="communication" value="talkative">
+                            <span class="radio-label">🗣️ Talkative <small>(வாய் சும்மாவே இருக்காதே! 🗣️)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="communication" value="silent">
+                            <span class="radio-label">🤫 Silent & Reserved <small>(மௌன ராகம் கார்த்திக் மாதிரி
+                                    🤫)</small></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you prefer...</label>
+                    <div class="radio-group">
+                        <label class="radio-card">
+                            <input type="radio" name="lifestyle" value="home">
+                            <span class="radio-label">🏠 Staying at Home <small>(வீடு தான் சொர்க்கம்... சும்மா
+                                    இருப்போம்! 🏠)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="lifestyle" value="outdoor">
+                            <span class="radio-label">🌳 Going Out <small>(ஊர் சுத்தறதுல நீ ஒரு எக்ஸ்பர்ட்!
+                                    🌳)</small></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>How do you usually handle anger?</label>
+                    <div class="radio-group vertical">
+                        <label class="radio-card">
+                            <input type="radio" name="anger" value="talk">
+                            <span class="radio-label">💬 I talk it out calmly <small>(நாகரீகமான மனுஷன்ப்பா நீ
+                                    💬)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="anger" value="silence">
+                            <span class="radio-label">🤐 I go silent for a while <small>(சைலண்ட் கில்லர் ஆமா!
+                                    🤐)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="anger" value="express">
+                            <span class="radio-label">😤 I express it immediately <small>(வெடி குண்டு பார்ட்டி
+                                    😤)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="anger" value="alone">
+                            <span class="radio-label">🚶 I need time alone <small>(குகைக்குள்ள போய்டுவேன்!
+                                    🚶)</small></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Are you...</label>
+                    <div class="radio-group">
+                        <label class="radio-card">
+                            <input type="radio" name="patience" value="patient">
+                            <span class="radio-label">🧘 Patient <small>(காந்திக்கே டஃப் கொடுப்ப போல! 🧘)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="patience" value="quick">
+                            <span class="radio-label">⚡ Quick-tempered <small>(நெருப்புடா... நெருங்காதடா!
+                                    ⚡)</small></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn-secondary" onclick="goBack('basicInfoScreen')">← Back</button>
+                    <button class="btn-primary" onclick="goToEmotional()">Continue 💖</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emotional Screen -->
+        <section class="screen" id="emotionalScreen">
+            <div class="card">
+                <div class="progress-bar">
+                    <div class="progress" style="width: 60%"></div>
+                </div>
+                <h2>❤️ Emotional Nature</h2>
+                <p class="step-desc">Understanding your emotional world...</p>
+
+                <div class="form-group">
+                    <label>Do you express emotions openly?</label>
+                    <div class="radio-group">
+                        <label class="radio-card">
+                            <input type="radio" name="expression" value="open">
+                            <span class="radio-label">💗 Yes, openly <small>(மனசு ஒரு திறந்த புத்தகம் 💗)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="expression" value="private">
+                            <span class="radio-label">🔒 I keep them inside <small>(ரகசிய போலீஸ் மாதிரி!
+                                    🔒)</small></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you need emotional reassurance often?</label>
+                    <div class="radio-group vertical">
+                        <label class="radio-card">
+                            <input type="radio" name="reassurance" value="often">
+                            <span class="radio-label">🤗 Yes, quite often <small>(சீனி சர்க்கரையே... கொஞ்சம் கொஞ்சுங்க!
+                                    🤗)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="reassurance" value="sometimes">
+                            <span class="radio-label">💭 Sometimes <small>(அவ்வப்போது... ஆசை தான்! 💭)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="reassurance" value="rarely">
+                            <span class="radio-label">💪 Rarely, I'm self-sufficient <small>(நம்பிக்கை அதானே எல்லாம்!
+                                    💪)</small></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>How important is emotional support to you?</label>
+                    <div class="radio-group vertical">
+                        <label class="radio-card">
+                            <input type="radio" name="support" value="very">
+                            <span class="radio-label">💖 Very important <small>(பாசம் தான் முக்கியம் பிகிலு!
+                                    💖)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="support" value="moderate">
+                            <span class="radio-label">💕 Moderately important <small>(ஒரு அளவு இருந்தா நல்லது
+                                    💕)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="support" value="little">
+                            <span class="radio-label">🌿 Nice to have <small>(வந்தா வரட்டும்... வராட்டி போட்டும்!
+                                    🌿)</small></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn-secondary" onclick="goBack('personalityScreen')">← Back</button>
+                    <button class="btn-primary" onclick="goToLifestyle()">Continue 💖</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lifestyle Screen -->
+        <section class="screen" id="lifestyleScreen">
+            <div class="card">
+                <div class="progress-bar">
+                    <div class="progress" style="width: 80%"></div>
+                </div>
+                <h2>🌍 Lifestyle & Values</h2>
+                <p class="step-desc">Your life priorities and preferences...</p>
+
+                <div class="form-group">
+                    <label>Are you more...</label>
+                    <div class="radio-group">
+                        <label class="radio-card">
+                            <input type="radio" name="focus" value="career">
+                            <span class="radio-label">💼 Career-focused <small>(பணம் தான் பவித்ரம் 💼)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="focus" value="family">
+                            <span class="radio-label">👨‍👩‍👧 Family-oriented <small>(குடும்பம்... குட்டி... சந்தோஷம்!
+                                    👨‍👩‍👧)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="focus" value="balanced">
+                            <span class="radio-label">⚖️ Balanced <small>(அனைத்திலும் சரி பாதி ⚖️)</small></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you prefer...</label>
+                    <div class="radio-group">
+                        <label class="radio-card">
+                            <input type="radio" name="routine" value="routine">
+                            <span class="radio-label">📋 Planned routines <small>(டைம் பீஸ் பார்ட்டி அண்ணாச்சி!
+                                    📋)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="routine" value="spontaneous">
+                            <span class="radio-label">🎲 Spontaneous life <small>(திடீர் முடிவு... அதான் கெத்து!
+                                    🎲)</small></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you enjoy...</label>
+                    <div class="radio-group">
+                        <label class="radio-card">
+                            <input type="radio" name="social" value="gatherings">
+                            <span class="radio-label">🎉 Social gatherings <small>(கூட்டம் தான் எனக்கு கொண்டாட்டம்
+                                    🎉)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="social" value="peaceful">
+                            <span class="radio-label">🌸 Peaceful environments <small>(தனிமையிலே இனிமை காண முடியுமா?
+                                    🌸)</small></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>What do you value most in a relationship?</label>
+                    <div class="radio-group vertical">
+                        <label class="radio-card">
+                            <input type="radio" name="value" value="trust">
+                            <span class="radio-label">🤝 Trust & Loyalty <small>(நீ உருட்டு பா... நேர்மை தான் முக்கியம்
+                                    🤝)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="value" value="passion">
+                            <span class="radio-label">🔥 Passion & Romance <small>(ரொமாண்டிக் ரீல்ஸ் அதிகமா பார்ப்பியா?
+                                    🔥)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="value" value="understanding">
+                            <span class="radio-label">💝 Understanding & Support <small>(என்னை புரிஞ்சிகிட்டா போதும்
+                                    சாமி 💝)</small></span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="value" value="adventure">
+                            <span class="radio-label">🌟 Adventure & Growth <small>(ஜாலியா இருப்போம்... வளருவோம்!
+                                    🌟)</small></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn-secondary" onclick="goBack('emotionalScreen')">← Back</button>
+                    <button class="btn-primary" onclick="generateResults()">
+                        <span>Find My Match</span>
+                        <span class="btn-heart">💖</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Screen -->
+        <section class="screen" id="resultsScreen">
+            <div class="card results-card">
+                <div class="results-header">
+                    <div class="heart-icon pulse">💖</div>
+                    <h2>Compatibility Insight for <span id="resultName">You</span></h2>
+                </div>
+
+                <div id="personalityInsight" class="insight-section">
+                    <!-- Filled by JavaScript -->
+                </div>
+
+                <div id="partnerType" class="partner-section">
+                    <h3>🌸 Best Suitable Partner Type</h3>
+                    <ul id="partnerTraits">
+                        <!-- Filled by JavaScript -->
+                    </ul>
+                </div>
+
+                <div id="whyMatch" class="match-section">
+                    <h3>💞 Why This Match Works</h3>
+                    <p id="matchReason"></p>
+                </div>
+
+                <div id="avoidSection" class="avoid-section">
+                    <h3>🚫 Less Suitable Match</h3>
+                    <ul id="avoidTraits">
+                        <!-- Filled by JavaScript -->
+                    </ul>
+                </div>
+
+                <div class="final-thought">
+                    <h3>🌷 Final Thought</h3>
+                    <p id="finalMessage"></p>
+                </div>
+
+                <!-- Funny Tamil Remark -->
+                <div id="personalityFunnyRemark" class="funny-remark-section"></div>
+
+                <!-- Tamil Movie Match -->
+                <div id="movieMatchResult" class="movie-match-section">
+                    <!-- Filled by JavaScript -->
+                </div>
+
+                <div class="btn-group center space-between">
+                    <button class="btn-primary" onclick="restartQuiz()">
+                        <span>Start Again</span>
+                        <span class="btn-heart">🔄</span>
+                    </button>
+                    <button class="btn-share" onclick="shareResult()">
+                        <span>Share 📱</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== COUPLE CALCULATOR SCREENS ==================== -->
+
+        <!-- Couple Calculator Input Screen -->
+        <section class="screen" id="coupleScreen">
+            <div class="card couple-card">
+                <div class="couple-hearts">
+                    <span class="heart-left">💕</span>
+                    <span class="heart-center">💑</span>
+                    <span class="heart-right">💕</span>
+                </div>
+                <h2>Love Calculator</h2>
+                <p class="tagline">Discover Your Numerology Love Match</p>
+                <p class="step-desc">Enter both names to calculate your cosmic love connection using ancient numerology
+                    wisdom...</p>
+
+                <div class="couple-inputs">
+                    <div class="partner-input">
+                        <div class="partner-icon">👨</div>
+                        <label for="maleName">His Name</label>
+                        <input type="text" id="maleName" placeholder="Enter his name" required>
+                    </div>
+
+                    <div class="love-connector">
+                        <span class="connector-heart">❤️</span>
+                    </div>
+
+                    <div class="partner-input">
+                        <div class="partner-icon">👩</div>
+                        <label for="femaleName">Her Name</label>
+                        <input type="text" id="femaleName" placeholder="Enter her name" required>
+                    </div>
+                </div>
+
+                <div class="btn-group center">
+                    <button class="btn-secondary" onclick="goBack('welcomeScreen')">← Back</button>
+                    <button class="btn-primary" onclick="calculateLove()">
+                        <span>Calculate Love</span>
+                        <span class="btn-heart">💘</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Couple Results Screen -->
+        <section class="screen" id="coupleResultsScreen">
+            <div class="card couple-results-card">
+                <div class="couple-result-header">
+                    <div class="couple-names">
+                        <span id="resultMaleName" class="partner-name">Him</span>
+                        <span class="love-symbol">💕</span>
+                        <span id="resultFemaleName" class="partner-name">Her</span>
+                    </div>
+                </div>
+
+                <!-- Love Percentage Circle -->
+                <div class="love-meter-container">
+                    <div class="love-meter">
+                        <svg class="love-circle" viewBox="0 0 200 200">
+                            <circle class="love-circle-bg" cx="100" cy="100" r="85"></circle>
+                            <circle class="love-circle-fill" cx="100" cy="100" r="85" id="loveCircle"></circle>
+                        </svg>
+                        <div class="love-percentage">
+                            <span id="lovePercent">0</span>%
+                            <span class="love-label">Love Match</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Numerology Numbers -->
+                <div class="numerology-section">
+                    <h3>🔢 Numerology Insight</h3>
+                    <div class="numerology-grid">
+                        <div class="num-card">
+                            <span class="num-value" id="maleNumber">0</span>
+                            <span class="num-label">His Life Path</span>
+                        </div>
+                        <div class="num-card highlight">
+                            <span class="num-value" id="coupleNumber">0</span>
+                            <span class="num-label">Combined Energy</span>
+                        </div>
+                        <div class="num-card">
+                            <span class="num-value" id="femaleNumber">0</span>
+                            <span class="num-label">Her Life Path</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compatibility Analysis -->
+                <div class="compatibility-section">
+                    <h3>💞 Compatibility Analysis</h3>
+                    <p id="compatibilityText"></p>
+                </div>
+
+                <!-- Connection Depth -->
+                <div class="connection-section">
+                    <h3>🌊 Depth of Connection</h3>
+                    <div class="connection-bars">
+                        <div class="connection-bar">
+                            <span class="bar-label">Emotional Bond</span>
+                            <div class="bar-track">
+                                <div class="bar-fill" id="emotionalBar"></div>
+                            </div>
+                            <span class="bar-percent" id="emotionalPercent">0%</span>
+                        </div>
+                        <div class="connection-bar">
+                            <span class="bar-label">Mental Connection</span>
+                            <div class="bar-track">
+                                <div class="bar-fill mental" id="mentalBar"></div>
+                            </div>
+                            <span class="bar-percent" id="mentalPercent">0%</span>
+                        </div>
+                        <div class="connection-bar">
+                            <span class="bar-label">Spiritual Harmony</span>
+                            <div class="bar-track">
+                                <div class="bar-fill spiritual" id="spiritualBar"></div>
+                            </div>
+                            <span class="bar-percent" id="spiritualPercent">0%</span>
+                        </div>
+                        <div class="connection-bar">
+                            <span class="bar-label">Physical Chemistry</span>
+                            <div class="bar-track">
+                                <div class="bar-fill physical" id="physicalBar"></div>
+                            </div>
+                            <span class="bar-percent" id="physicalPercent">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Relationship Advice -->
+                <div class="advice-section">
+                    <h3>💝 Relationship Advice</h3>
+                    <div class="advice-cards">
+                        <div class="advice-card strength">
+                            <h4>✨ Your Strengths</h4>
+                            <p id="strengthsText"></p>
+                        </div>
+                        <div class="advice-card challenge">
+                            <h4>🌱 Growth Areas</h4>
+                            <p id="challengesText"></p>
+                        </div>
+                        <div class="advice-card tips">
+                            <h4>💕 Keys to Success</h4>
+                            <ul id="adviceTips"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Love Message -->
+                <div class="love-message">
+                    <h3>🌹 Your Love Story</h3>
+                    <p id="loveStoryText"></p>
+                </div>
+
+                <!-- Funny Tamil Remark -->
+                <div id="coupleFunnyRemark" class="funny-remark-section"></div>
+
+                <!-- Tamil Movie Match -->
+                <div id="coupleMovieMatchResult" class="movie-match-section">
+                    <!-- Filled by JavaScript -->
+                </div>
+
+                <div class="btn-group center space-between">
+                    <button class="btn-secondary" onclick="goBack('coupleScreen')">Try Another</button>
+                    <button class="btn-primary" onclick="restartQuiz()">
+                        <span>🏠</span>
+                    </button>
+                    <button class="btn-share" onclick="shareResult()">
+                        <span>Share 📱</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Made with 💖 for finding love & understanding</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
